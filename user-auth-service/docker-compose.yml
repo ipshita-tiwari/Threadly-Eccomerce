@@ -1,0 +1,45 @@
+services:
+
+  thready-product:
+    image: threadly-product
+    container_name: threadly-product
+    ports:
+      - "8082:8082"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://threadly-product-db:5432/threadly-product-db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+    depends_on:
+      - threadly-product-db
+
+    networks:
+      - threadly-network
+
+
+  threadly-product-db:
+    image: postgres:16-alpine
+    container_name: threadly-product-db
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: threadly-product-db
+
+    ports:
+      - "5440:5432"
+
+    volumes:
+      - threadly-product-db-data:/var/lib/postgresql/data
+
+    networks:
+      - threadly-network
+
+
+volumes:
+  threadly-product-db-data:
+
+
+networks:
+  threadly-network:
