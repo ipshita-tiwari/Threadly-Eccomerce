@@ -17,13 +17,16 @@ spring:
       hibernate:
         format_sql: true
 
+
+  profiles:
+      active: local
+
 server:
   port:
     8083
 
-#  profiles:
-#    active:
-#      local
+
+
 
 
 

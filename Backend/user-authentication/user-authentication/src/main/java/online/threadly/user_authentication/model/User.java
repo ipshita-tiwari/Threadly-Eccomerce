@@ -5,6 +5,7 @@ package online.threadly.user_authentication.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="users")
 
 public class User implements UserDetails {
@@ -42,7 +44,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String phone;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String address;
 
     @Enumerated(EnumType.STRING)
